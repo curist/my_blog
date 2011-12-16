@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: hello | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/hello/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
   <updated>2011-12-17T00:52:22+08:00</updated>
   <id>http://yoursite.com/</id>
@@ -20,9 +20,9 @@
     <id>http://yoursite.com/blog/2011/12/17/so-this-is-where-we-started</id>
     <content type="html"><![CDATA[<h1>The Beginning</h1>
 
-<p>For someone who doens&#8217;t have the habits to write things, how do we start blog writing?
-For a man with poor writing skill like me, for a person that doesn&#8217;t have much to tell&#8230;
-yeah&#8230;</p>
+<p>For someone who doens't have the habits to write things, how do we start blog writing?
+For a man with poor writing skill like me, for a person that doesn't have much to tell...
+yeah...</p>
 
 <p>I think, we better stop here.</p>
 ]]></content>
