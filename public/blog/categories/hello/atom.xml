@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: hello | My Octopress Blog]]></title>
-  <link href="http://yoursite.com/blog/categories/hello/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2011-12-17T00:52:22+08:00</updated>
-  <id>http://yoursite.com/</id>
+  <title><![CDATA[Category: hello | The Place]]></title>
+  <link href="http://theplace.heroku.com/blog/categories/hello/atom.xml" rel="self"/>
+  <link href="http://theplace.heroku.com/"/>
+  <updated>2011-12-17T12:59:26+08:00</updated>
+  <id>http://theplace.heroku.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[curist]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[So this is where we started.]]></title>
-    <link href="http://yoursite.com/blog/2011/12/17/so-this-is-where-we-started/"/>
+    <link href="http://theplace.heroku.com/blog/2011/12/17/so-this-is-where-we-started/"/>
     <updated>2011-12-17T00:46:00+08:00</updated>
-    <id>http://yoursite.com/blog/2011/12/17/so-this-is-where-we-started</id>
-    <content type="html"><![CDATA[<h1>The Beginning</h1>
+    <id>http://theplace.heroku.com/blog/2011/12/17/so-this-is-where-we-started</id>
+    <content type="html"><![CDATA[<h2>The Beginning</h2>
 
 <p>For someone who doens't have the habits to write things, how do we start blog writing?
 For a man with poor writing skill like me, for a person that doesn't have much to tell...

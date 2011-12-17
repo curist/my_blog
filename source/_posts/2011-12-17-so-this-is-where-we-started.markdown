@@ -8,8 +8,8 @@ categories:
 - world
 - octopress
 ---
-The Beginning
-================================
+## The Beginning
+
 For someone who doens't have the habits to write things, how do we start blog writing?
 For a man with poor writing skill like me, for a person that doesn't have much to tell...
 yeah...
