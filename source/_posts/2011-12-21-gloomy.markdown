@@ -16,3 +16,13 @@ categories:
 最近也算又開始看小說了呢，我想想…
 烏鴉的拇指、冰與火之歌、迷霧之子、Diner噬食者…
 撇開想吐嘈的點，都算滿好看的啦。
+
+啊，就當作是致敬吧
+
+    #include <stdio.h>
+    int main() {
+        printf("hello world!!\n");
+        return 0;
+    }
+
+你看，我還是會寫c嘛 :)
