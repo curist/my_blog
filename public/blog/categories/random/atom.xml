@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[The Place]]></title>
-  <link href="http://theplace.heroku.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: random | The Place]]></title>
+  <link href="http://theplace.heroku.com/blog/categories/random/atom.xml" rel="self"/>
   <link href="http://theplace.heroku.com/"/>
   <updated>2011-12-21T11:25:27+08:00</updated>
   <id>http://theplace.heroku.com/</id>
@@ -28,21 +28,6 @@
 <p>最近也算又開始看小說了呢，我想想…
 烏鴉的拇指、冰與火之歌、迷霧之子、Diner噬食者…
 撇開想吐嘈的點，都算滿好看的啦。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[So this is where we started.]]></title>
-    <link href="http://theplace.heroku.com/blog/2011/12/17/so-this-is-where-we-started/"/>
-    <updated>2011-12-17T00:46:00+08:00</updated>
-    <id>http://theplace.heroku.com/blog/2011/12/17/so-this-is-where-we-started</id>
-    <content type="html"><![CDATA[<h2>The Beginning</h2>
-
-<p>For someone who doesn&#8217;t have the habits to write things, how do we start blog writing?
-For a man with poor writing skill like me, for a person that doesn&#8217;t have much to tell&#8230;
-yeah&#8230;</p>
-
-<p>I think, we better stop here.</p>
 ]]></content>
   </entry>
   
