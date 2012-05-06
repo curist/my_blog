@@ -4,7 +4,7 @@
   <title><![CDATA[The Place]]></title>
   <link href="http://theplace.heroku.com/atom.xml" rel="self"/>
   <link href="http://theplace.heroku.com/"/>
-  <updated>2012-03-10T15:06:03+08:00</updated>
+  <updated>2012-05-06T21:10:18+08:00</updated>
   <id>http://theplace.heroku.com/</id>
   <author>
     <name><![CDATA[curist]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[煩]]></title>
+    <link href="http://theplace.heroku.com/blog/2012/05/06/fan/"/>
+    <updated>2012-05-06T21:02:00+08:00</updated>
+    <id>http://theplace.heroku.com/blog/2012/05/06/fan</id>
+    <content type="html"><![CDATA[<p>煩燥啊。</p>
+
+<p>上不上下不下。好像又停滯在這了。</p>
+
+<p>看著許多人有個目標在前進著，只是繼續這樣下去的話，
+又要被丟在後頭了。
+也沒有所謂被丟在後頭這件事，世界上本來就有許多種不同人啊，
+向前走、或是安於現況，選擇後者的也很多不是嗎。
+如果我不是夠積極的那群人，那走遠了也只是自然而然的事，
+沒什麼好唉的，真的啊，想要得到什麼，就去做嘛？</p>
+
+<p>還有件事一直壓在心頭。
+之後還會想起現在煩心的是什麼事嗎？
+希望以後看到現在這篇時，不用在煩惱了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[update]]></title>
