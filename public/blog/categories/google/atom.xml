@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: google | The Place]]></title>
+  <link href="http://theplace.heroku.com/blog/categories/google/atom.xml" rel="self"/>
+  <link href="http://theplace.heroku.com/"/>
+  <updated>2012-05-22T15:58:53+08:00</updated>
+  <id>http://theplace.heroku.com/</id>
+  <author>
+    <name><![CDATA[curist]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google Translate]]></title>
+    <link href="http://theplace.heroku.com/blog/2012/05/22/google-translate/"/>
+    <updated>2012-05-22T15:32:00+08:00</updated>
+    <id>http://theplace.heroku.com/blog/2012/05/22/google-translate</id>
+    <content type="html"><![CDATA[<p>差不多是去年的這個時候(2011/05/26)，google宣佈要停掉google translate API，<br/>
+原因大概是很多其它網站濫用他們的服務之類的。<br/>
+不過在之後google擬好收費方案後translate API又復活啦~~</p>
+
+<p>如果是付費的使用者就可以透過api key繼續存取google的API，<br/>
+如果不想付費的話也可以考慮別家翻譯API，像微軟也有推出Translator的服務。</p>
+
+<p>可是不管，我就是要用google翻譯嘛~<br/>
+那就...來吧！</p>
+
+<p>先編好本地端的語言偵測、放到該放的位置</p>
+
+<ol>
+<li>hg clone https://code.google.com/p/chromium-compact-language-detector</li>
+<li>cd chromium-compact-language-detector</li>
+<li>source ./build.sh</li>
+<li>download https://gist.github.com/2767340 to replace example.cc</li>
+<li>g++ -DCLD_WINDOWS -I. -L. -o lang_detect example.cc -lcld -lstdc++</li>
+<li>mv lang_detect somewhere_you_put_your_usr_bin_files</li>
+</ol>
+
+
+<p>然後是ruby程式...
+<div><script src='https://gist.github.com/2767395.js?file='></script>
+<noscript><pre><code>#!/usr/bin/env ruby
+require 'readline'
+require 'json'
+require 'uri'
+
+# for lang_detect you may want to check https://gist.github.com/2767346
+LANG_DETECTOR = 'lang_detect'
+
+class GoogleTranslate
+  def initialize
+    @resp = {}
+  end
+
+  def user_agent
+    # TODO random choose from a user agents pool
+    'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; InfoPath.2)'
+  end
+
+  def api_url(src_lang)
+    n = rand(5) + 1 # using server 1 ~ 5
+    &quot;https://clients#{n}.google.com/translate_a/t?client=dict-chrome-ex&amp;sl=#{src_lang}&amp;tl=zh-tw&amp;q=&quot;
+  end
+
+  def request_str(query_str)
+    src_lang = `#{LANG_DETECTOR} &quot;#{query_str}&quot;`.strip
+    api_url(src_lang) + URI.encode(query_str)
+  end
+
+  def translate(query_str, numbers=3)
+    cmd = %Q{curl -s -A &quot;#{user_agent}&quot; &quot;#{request_str(query_str)}&quot;}
+    @resp = JSON.parse(`#{cmd}`)
+    if @resp['dict']
+      @resp['dict'][0]['terms'][0...numbers].join(', ')
+    else
+      @resp['sentences'][0]['trans']
+    end
+  end
+end
+gt = GoogleTranslate.new
+
+trap('SIGINT') { exit }
+
+if ARGV.length == 1
+  # one shot translate
+  puts gt.translate(ARGV[0])
+else
+  # translating console, keep it opened
+  while buf = Readline.readline(&quot;&gt; &quot;, true)
+    puts gt.translate(buf)
+  end
+end
+</code></pre></noscript></div>
+</p>
+
+<p>api_url是看google chrome的字典plugin拿的，應該可以撐很久吧？</p>
+
+<p>同場加映google發音</p>
+
+<ol>
+<li>先裝好mpg321: suodo apt-get install mpg321</li>
+<li>抓以下script..
+<div><script src='https://gist.github.com/2767430.js?file='></script>
+<noscript><pre><code>#!/bin/sh
+
+user_agent=&quot;Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5&quot;
+sentence=`echo $1 | xargs -I{} ruby -e 'require &quot;uri&quot;;puts URI.escape(&quot;{}&quot;)'`
+
+if [ $# -gt 0 ]
+then
+    lang=`lang_detect &quot;$1&quot;`
+    speak_url=&quot;http://translate.google.com/translate_tts?ie=UTF-8&amp;q=&quot;$sentence&quot;&amp;tl=&quot;$lang
+fi
+
+if [ $# -eq 1 ]
+then
+    curl -s -A &quot;$user_agent&quot; &quot;$speak_url&quot; | mpg321 - 2&gt; /dev/null
+elif [ $# -eq 2 ]
+then
+    curl -s -A &quot;$user_agent&quot; &quot;$speak_url&quot; &gt; $2
+else
+    echo &quot;Usage: speak &lt;sentence&gt; [output]&quot;
+fi
+</code></pre></noscript></div>
+</li>
+</ol>
+
+
+<p>usage:</p>
+
+<pre><code>speak '鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝嗯～鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝嗯～鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝嗯～爛機車發不動～ 鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝嗯～'
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
