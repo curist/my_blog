@@ -4,7 +4,7 @@
   <title><![CDATA[The Place]]></title>
   <link href="http://theplace.heroku.com/atom.xml" rel="self"/>
   <link href="http://theplace.heroku.com/"/>
-  <updated>2012-05-06T21:10:18+08:00</updated>
+  <updated>2012-05-22T10:45:20+08:00</updated>
   <id>http://theplace.heroku.com/</id>
   <author>
     <name><![CDATA[curist]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[jasmine-headless-webkit]]></title>
+    <link href="http://theplace.heroku.com/blog/2012/05/22/jasmine-headless-webkit/"/>
+    <updated>2012-05-22T10:28:00+08:00</updated>
+    <id>http://theplace.heroku.com/blog/2012/05/22/jasmine-headless-webkit</id>
+    <content type="html"><![CDATA[<p>this isn&#8217;t supposed to be a technical blog.<br/>
+oh well, forget it.</p>
+
+<p>quick and dirty note</p>
+
+<ol>
+<li>gem install jasmine jasmine-headless-webkit guard-jasmine-headless-webkit</li>
+<li>sudo apt-get install libqt4-dev libqtwebkit-dev</li>
+<li>jasmine init                       # setup example spec files</li>
+<li>jasmine-headless-webkit            # build the runner and run the tests</li>
+<li>guard init jasmine-headless-webkit # create Guardfile</li>
+</ol>
+
+
+<p>install https://extensions.gnome.org/extension/150/message-notifier/
+to quickly get rid of piled up notify-send notifications (in gnome3 with gnome-shell)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[煩]]></title>
