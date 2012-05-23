@@ -39,7 +39,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">The Place</a></h1>
   
-    <h2>最佳地點</h2>
+    <h2>I shout out so loud, that nobody heard me.</h2>
   
 </hgroup>
 
@@ -411,111 +411,9 @@ to quickly get rid of piled up notify-send notifications (in gnome3 with gnome-s
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/21/gloomy/">Gloomy</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-21T10:43:00+08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>壞天氣</h2>
-
-<p>可是心情倒是沒麼差<br/>
-公司大部分人都去東京玩了呢，真好…
-不知道這幾天東京會不會下雪呢。聖誕節、東京、雪……
-不過我也有可以期待的旅程呀，還有很好很好看的迷霧之子。</p>
-
-<p>最近也算又開始看小說了呢，我想想…
-烏鴉的拇指、冰與火之歌、迷霧之子、Diner噬食者…
-撇開想吐嘈的點，都算滿好看的啦。</p>
-
-<p>啊，就當作是致敬吧</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello world!!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>你看，我還是會寫c嘛 :)</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/17/so-this-is-where-we-started/">So This Is Where We Started.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-17T00:46:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>The Beginning</h2>
-
-<p>For someone who doesn&#8217;t have the habits to write things, how do we start blog writing?
-For a man with poor writing skill like me, for a person that doesn&#8217;t have much to tell&#8230;
-yeah&#8230;</p>
-
-<p>I think, we better stop here.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -579,6 +477,22 @@ yeah&#8230;</p>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("curist", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/curist" class="twitter-follow-button" data-show-count="false">Follow @curist</a>
+  
+</section>
 
 
 

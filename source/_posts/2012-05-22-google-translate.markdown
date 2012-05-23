@@ -5,6 +5,7 @@ date: 2012-05-22 15:32
 comments: true
 categories: google translate command line
 ---
+
 差不多是去年的這個時候(2011/05/26)，google宣佈要停掉google translate API，  
 原因大概是很多其它網站濫用他們的服務之類的。  
 不過在之後google擬好收費方案後translate API又復活啦~~
