@@ -9,9 +9,7 @@
   <meta name="author" content="curist">
 
   
-  <meta name="description" content="差不多是去年的這個時候(2011/05/26)，google宣佈要停掉google translate API，
-原因大概是很多其它網站濫用他們的服務之類的。
-不過在之後google擬好收費方案後translate API又復活啦~~ 如果是付費的使用者就可以透過api &hellip;">
+  <meta name="description" content="googled for a while, determine to roll out my own version. The Problem We have a product, which can acts as material for other products, thus a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +64,89 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/24/rails-many-to-many-recursion/">Rails Many-to-many Recursion</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-24T15:00:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>googled for a while, determine to roll out my own version.</p>
+
+<h3>The Problem</h3>
+
+<p>We have a product, which can acts as material for other products, thus a product can has_many products, at the same time, products are composed multi other products, so a product also has_many materials(product).</p>
+
+<h3>Solve</h3>
+
+<p>Product migration file</p>
+
+<pre><code>class CreateProducts &lt; ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.string  :name
+    end
+  end
+end
+</code></pre>
+
+<p>ProductShip migration file</p>
+
+<pre><code>class CreateProductShips &lt; ActiveRecord::Migration
+  def change
+    create_table :product_ships do |t|
+      t.integer :product_id
+      t.integer :material_id
+    end
+  end
+end
+</code></pre>
+
+<p>Model ProductShip</p>
+
+<pre><code>class ProductShip &lt; ActiveRecord::Base
+  belongs_to :product
+  belongs_to :material, :class_name =&gt; 'Product'
+end
+</code></pre>
+
+<p>Model Product</p>
+
+<pre><code>class Product &lt; ActiveRecord::Base
+  has_many :materials, :class_name =&gt; 'ProductShip', :foreign_key =&gt; 'material_id'
+  has_many :products, :class_name =&gt; 'ProductShip'
+end
+</code></pre>
+
+<p>That&#8217;s it!! Not that hard isn&#8217;t it ;)</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -372,45 +453,6 @@ to quickly get rid of piled up notify-send notifications (in gnome3 with gnome-s
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/31/untitled/">Untitled</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-31T13:28:00+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>空虛寂寞覺得冷嗎？其實也不會。能這樣下決定有點愉快。</p>
-
-<p>不過，又要面對對自己能力的不確定感了。<br/>
-我知道我可以的。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -426,6 +468,10 @@ to quickly get rid of piled up notify-send notifications (in gnome3 with gnome-s
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/05/24/rails-many-to-many-recursion/">Rails many-to-many recursion</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/05/22/google-translate/">Google Translate</a>
       </li>
     
@@ -439,10 +485,6 @@ to quickly get rid of piled up notify-send notifications (in gnome3 with gnome-s
     
       <li class="post">
         <a href="/blog/2012/03/10/update/">update</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/31/untitled/">untitled</a>
       </li>
     
   </ul>

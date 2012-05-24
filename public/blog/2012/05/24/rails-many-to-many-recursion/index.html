@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: hello - The Place</title>
+  <title>Rails many-to-many recursion - The Place</title>
   <meta name="author" content="curist">
 
   
-  <meta name="description" content="Category: hello">
+  <meta name="description" content="googled for a while, determine to roll out my own version. The Problem We have a product, which can acts as material for other products, thus a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://theplace.heroku.comblog/categories/hello">
+  <link rel="canonical" href="http://theplace.heroku.com/blog/2012/05/24/rails-many-to-many-recursion">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,35 +63,131 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Hello</h1>
+    
+      <h1 class="entry-title">Rails Many-to-many Recursion</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-24T15:00:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>googled for a while, determine to roll out my own version.</p>
 
-  
-  <h2>2011</h2>
+<h3>The Problem</h3>
 
-<article>
-  
-<h1><a href="/blog/2011/12/17/so-this-is-where-we-started/">So this is where we started.</a></h1>
-<time datetime="2011-12-17T00:46:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>17</span> <span class='year'>2011</span></time>
+<p>We have a product, which can acts as material for other products, thus a product can has_many products, at the same time, products are composed multi other products, so a product also has_many materials(product).</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/hello/'>hello</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/world/'>world</a></span>
-</footer>
+<h3>Solve</h3>
 
+<p>Product migration file</p>
 
-</article>
+<pre><code>class CreateProducts &lt; ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.string  :name
+    end
+  end
+end
+</code></pre>
 
+<p>ProductShip migration file</p>
+
+<pre><code>class CreateProductShips &lt; ActiveRecord::Migration
+  def change
+    create_table :product_ships do |t|
+      t.integer :product_id
+      t.integer :material_id
+    end
+  end
+end
+</code></pre>
+
+<p>Model ProductShip</p>
+
+<pre><code>class ProductShip &lt; ActiveRecord::Base
+  belongs_to :product
+  belongs_to :material, :class_name =&gt; 'Product'
+end
+</code></pre>
+
+<p>Model Product</p>
+
+<pre><code>class Product &lt; ActiveRecord::Base
+  has_many :materials, :class_name =&gt; 'ProductShip', :foreign_key =&gt; 'material_id'
+  has_many :products, :class_name =&gt; 'ProductShip'
+end
+</code></pre>
+
+<p>That&#8217;s it!! Not that hard isn&#8217;t it ;)</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">curist</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-24T15:00:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/activerecord/'>activerecord</a>, <a class='category' href='/blog/categories/many/'>many</a>, <a class='category' href='/blog/categories/migration/'>migration</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/recursion/'>recursion</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://theplace.heroku.com/blog/2012/05/24/rails-many-to-many-recursion/" data-via="curist" data-counturl="http://theplace.heroku.com/blog/2012/05/24/rails-many-to-many-recursion/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/22/google-translate/" title="Previous Post: Google Translate">&laquo; Google Translate</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

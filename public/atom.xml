@@ -4,7 +4,7 @@
   <title><![CDATA[The Place]]></title>
   <link href="http://theplace.heroku.com/atom.xml" rel="self"/>
   <link href="http://theplace.heroku.com/"/>
-  <updated>2012-05-23T13:52:32+08:00</updated>
+  <updated>2012-05-24T15:11:15+08:00</updated>
   <id>http://theplace.heroku.com/</id>
   <author>
     <name><![CDATA[curist]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails many-to-many recursion]]></title>
+    <link href="http://theplace.heroku.com/blog/2012/05/24/rails-many-to-many-recursion/"/>
+    <updated>2012-05-24T15:00:00+08:00</updated>
+    <id>http://theplace.heroku.com/blog/2012/05/24/rails-many-to-many-recursion</id>
+    <content type="html"><![CDATA[<p>googled for a while, determine to roll out my own version.</p>
+
+<h3>The Problem</h3>
+
+<p>We have a product, which can acts as material for other products, thus a product can has_many products, at the same time, products are composed multi other products, so a product also has_many materials(product).</p>
+
+<h3>Solve</h3>
+
+<p>Product migration file</p>
+
+<pre><code>class CreateProducts &lt; ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.string  :name
+    end
+  end
+end
+</code></pre>
+
+<p>ProductShip migration file</p>
+
+<pre><code>class CreateProductShips &lt; ActiveRecord::Migration
+  def change
+    create_table :product_ships do |t|
+      t.integer :product_id
+      t.integer :material_id
+    end
+  end
+end
+</code></pre>
+
+<p>Model ProductShip</p>
+
+<pre><code>class ProductShip &lt; ActiveRecord::Base
+  belongs_to :product
+  belongs_to :material, :class_name =&gt; 'Product'
+end
+</code></pre>
+
+<p>Model Product</p>
+
+<pre><code>class Product &lt; ActiveRecord::Base
+  has_many :materials, :class_name =&gt; 'ProductShip', :foreign_key =&gt; 'material_id'
+  has_many :products, :class_name =&gt; 'ProductShip'
+end
+</code></pre>
+
+<p>That&#8217;s it!! Not that hard isn&#8217;t it ;)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Google Translate]]></title>
