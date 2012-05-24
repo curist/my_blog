@@ -9,7 +9,7 @@ categories: rails activerecord migration recursion many
 googled for a while, determine to roll out my own version.
 
 ### The Problem
-We have a product, which can acts as material for other products, thus a product can has_many products, at the same time, products are composed multi other products, so a product also has_many materials(product).
+We have a product, which can acts as material for other products, thus a product can has_many products, at the same time, products are composed by many other products, so a product can also has_many materials(product).
 
 ### Solve
 Product migration file
