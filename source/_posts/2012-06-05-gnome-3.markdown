@@ -1,0 +1,26 @@
+---
+layout: post
+title: "Gnome 3"
+date: 2012-06-05 11:07
+comments: true
+categories: gnome-shell gnome desktop
+---
+嗯..本來用ubuntu也用好好的好幾年了。  
+經典的gnome2加compiz現在想起來也還是很好用；後來的unity雖然被罵得臭頭，但我也用的滿順手的，global menu也是我很喜歡的功能..  
+不過還是受不了了，compiz的hot corner一直跟unity的相衝，時靈時不靈；看youtube部份影片皮膚看起來會是藍色的。
+
+要換別的distro的話，我考慮過ArchLinux，最近也是紅的亂七八糟的樣子，但之前用過的經驗，什麼都可以調校，什麼都可以照你意思來，固然很好，反過來說，Arch也要你什麼都要調校，什麼都要自己來，我實在懶了..然後Arch還有不同的套件來源、不同的套件管理方式，pacman、AUR、yaourt...ㄟ不是說好KISS的嗎？
+
+也有想過跳到Fedora用gnome3，或是試試看openSUSE的KDE，不過後來也是算了，apt-get已經用很順手了，用linux實在不太想再花時間在熟悉別的套件系統、系統架構啊之類的東西。
+
+我喜歡linux也不過就是因為command line好用，裝東西很方便，寫程式的環境舒服。
+
+總之就是選了linux mint 11定下來了，底下是熟悉的ubuntu，介面改用gnome-shell這樣。  
+我一直不是很明白有人批unity啊、gnome-shell的點。桌面環境只要能開shell、開個瀏覽器，方便切換、有多重桌面，最好還長得好看一點，不就夠了嗎？
+
+不過坦白說gnome-shell預設的主題還真的滿醜的，不知道怎麼改的話我也不會想用吧..。
+
+附上美圖兩張 :D
+
+{% img /images/gnome_shell_1.jpg %}
+{% img /images/gnome_shell_2.jpg %}
