@@ -9,8 +9,7 @@
   <meta name="author" content="curist">
 
   
-  <meta name="description" content="KDE呀KDE&#8230;之前有抓live cd摸過幾次，印象就是滿漂亮的，預設的工具列跟windows有點像，預設的顏色配置跟mac有點像。 剛換桌面環境，當然是先設熱鍵啦，能開瀏覽器、終端機，就能解決80%的需求了。
-這部份很簡單，找到熱鍵設定的地方照著改就行了， &hellip;">
+  <meta name="description" content="不知道什麼時候壞的？ 原因就是github廢掉v2的api了。 修改source/javascripts/github.js var github = (function(){ function render(target, repos){ var i = 0, fragment = '', t &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +79,93 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/25/octopress-github-plugin/">Octopress Github Plugin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-25T17:44:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>不知道什麼時候壞的？</p>
+
+<p>原因就是github廢掉v2的api了。</p>
+
+<p>修改source/javascripts/github.js</p>
+
+<div><script src='https://gist.github.com/2987686.js?file=github.js'></script>
+<noscript><pre><code>var github = (function(){
+  function render(target, repos){
+    var i = 0, fragment = '', t = $(target)[0];
+
+    for(i = 0; i &lt; repos.length; i++) {
+      fragment += '&lt;li&gt;&lt;a href=&quot;'+repos[i].url+'&quot;&gt;'+repos[i].name+'&lt;/a&gt;&lt;p&gt;'+repos[i].description+'&lt;/p&gt;&lt;/li&gt;';
+    }
+    t.innerHTML = fragment;
+  }
+  return {
+    showRepos: function(options){
+      $.ajax({
+          url: &quot;https://api.github.com/users/&quot;+options.user+&quot;/repos?callback=?&quot;
+        , type: 'jsonp'
+        , error: function (err) { $(options.target + ' li.loading').addClass('error').text(&quot;Error loading feed&quot;); }
+        , success: function(data) {
+          var repos = [];
+          var _data = data.data;
+          if (!_data) { return; }
+          for (var i = 0; i &lt; _data.length; i++) {
+            if (options.skip_forks &amp;&amp; _data[i].fork) { continue; }
+            repos.push(_data[i]);
+          }
+          repos.sort(function(a, b) {
+            var aDate = new Date(a.pushed_at).valueOf(),
+                bDate = new Date(b.pushed_at).valueOf();
+
+            if (aDate === bDate) { return 0; }
+            return aDate &gt; bDate ? -1 : 1;
+          });
+
+          if (options.count) { repos.splice(options.count); }
+          render(options.target, repos);
+        }
+      });
+    }
+  };
+})();
+</code></pre></noscript></div>
+
+
+<h1>edit</h1>
+
+<p>啊..改完後google才發現有人patch過了<a href="http://time.to.pullthepl.ug/blog/2012/6/13/fix-the-octopress-github-repo-sidebar-item/">here</a>
+也進branch2.1了<a href="https://github.com/imathis/octopress/issues/620">there</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -336,158 +422,6 @@ but it actually took me 2 hours to come up with this..</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/22/google-translate/">Google Translate</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-22T15:32:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>差不多是去年的這個時候(2011/05/26)，google宣佈要停掉google translate API，<br/>
-原因大概是很多其它網站濫用他們的服務之類的。<br/>
-不過在之後google擬好收費方案後translate API又復活啦~~</p>
-
-<p>如果是付費的使用者就可以透過api key繼續存取google的API，<br/>
-如果不想付費的話也可以考慮別家翻譯API，像微軟也有推出Translator的服務。</p>
-
-<p>可是不管，我就是要用google翻譯嘛~<br/>
-那就&#8230;來吧！</p>
-
-<p>先編好本地端的語言偵測、放到該放的位置</p>
-
-<ol>
-<li>hg clone https://code.google.com/p/chromium-compact-language-detector</li>
-<li>cd chromium-compact-language-detector</li>
-<li>source ./build.sh</li>
-<li>download https://gist.github.com/2767340 to replace example.cc</li>
-<li>g++ -DCLD_WINDOWS -I. -L. -o lang_detect example.cc -lcld -lstdc++</li>
-<li>mv lang_detect somewhere_you_put_your_usr_bin_files</li>
-</ol>
-
-
-<p>然後是ruby程式&#8230;</p>
-
-<div><script src='https://gist.github.com/2767395.js?file='></script>
-<noscript><pre><code>#!/usr/bin/env ruby
-require 'readline'
-require 'json'
-require 'uri'
-
-# for lang_detect you may want to check https://gist.github.com/2767346
-LANG_DETECTOR = 'lang_detect'
-
-class GoogleTranslate
-  def initialize
-    @resp = {}
-  end
-
-  def user_agent
-    # TODO random choose from a user agents pool
-    'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; InfoPath.2)'
-  end
-
-  def api_url(src_lang)
-    n = rand(5) + 1 # using server 1 ~ 5
-    &quot;https://clients#{n}.google.com/translate_a/t?client=dict-chrome-ex&amp;sl=#{src_lang}&amp;tl=zh-tw&amp;q=&quot;
-  end
-
-  def request_str(query_str)
-    src_lang = `#{LANG_DETECTOR} &quot;#{query_str}&quot;`.strip
-    api_url(src_lang) + URI.encode(query_str)
-  end
-
-  def translate(query_str, numbers=3)
-    cmd = %Q{curl -s -A &quot;#{user_agent}&quot; &quot;#{request_str(query_str)}&quot;}
-    @resp = JSON.parse(`#{cmd}`)
-    if @resp['dict']
-      @resp['dict'][0]['terms'][0...numbers].join(', ')
-    else
-      @resp['sentences'][0]['trans']
-    end
-  end
-end
-gt = GoogleTranslate.new
-
-trap('SIGINT') { exit }
-
-if ARGV.length == 1
-  # one shot translate
-  puts gt.translate(ARGV[0])
-else
-  # translating console, keep it opened
-  while buf = Readline.readline(&quot;&gt; &quot;, true)
-    puts gt.translate(buf)
-  end
-end
-</code></pre></noscript></div>
-
-
-<p>api_url是看google chrome的字典plugin拿的，應該可以撐很久吧？</p>
-
-<p>同場加映google發音</p>
-
-<ol>
-<li>先裝好mpg321: suodo apt-get install mpg321</li>
-<li>抓以下script..</li>
-</ol>
-
-
-<div><script src='https://gist.github.com/2767430.js?file='></script>
-<noscript><pre><code>#!/bin/sh
-
-user_agent=&quot;Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5&quot;
-sentence=`echo $1 | xargs -I{} ruby -e 'require &quot;uri&quot;;puts URI.escape(&quot;{}&quot;)'`
-
-if [ $# -gt 0 ]
-then
-    lang=`lang_detect &quot;$1&quot;`
-    speak_url=&quot;http://translate.google.com/translate_tts?ie=UTF-8&amp;q=&quot;$sentence&quot;&amp;tl=&quot;$lang
-fi
-
-if [ $# -eq 1 ]
-then
-    curl -s -A &quot;$user_agent&quot; &quot;$speak_url&quot; | mpg321 - 2&gt; /dev/null
-elif [ $# -eq 2 ]
-then
-    curl -s -A &quot;$user_agent&quot; &quot;$speak_url&quot; &gt; $2
-else
-    echo &quot;Usage: speak &lt;sentence&gt; [output]&quot;
-fi
-</code></pre></noscript></div>
-
-
-<p>usage:</p>
-
-<pre><code>speak '鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝嗯～鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝嗯～鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝嗯～爛機車發不動～ 鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝鵝嗯～'
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -503,6 +437,10 @@ fi
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/25/octopress-github-plugin/">Octopress Github Plugin</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/25/switched-to-kde4-2/">Switched to KDE4 (2)</a>
       </li>
     
@@ -516,10 +454,6 @@ fi
     
       <li class="post">
         <a href="/blog/2012/05/24/rails-many-to-many-recursion/">Rails many-to-many recursion</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/22/google-translate/">Google Translate</a>
       </li>
     
   </ul>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: octopress | The Place]]></title>
-  <link href="http://theplace.heroku.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <title><![CDATA[Category: repos, | The Place]]></title>
+  <link href="http://theplace.heroku.com/blog/categories/repos-/atom.xml" rel="self"/>
   <link href="http://theplace.heroku.com/"/>
   <updated>2012-06-25T17:59:55+08:00</updated>
   <id>http://theplace.heroku.com/</id>
@@ -70,21 +70,6 @@
 
 <p>啊..改完後google才發現有人patch過了<a href="http://time.to.pullthepl.ug/blog/2012/6/13/fix-the-octopress-github-repo-sidebar-item/">here</a>
 也進branch2.1了<a href="https://github.com/imathis/octopress/issues/620">there</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[So this is where we started.]]></title>
-    <link href="http://theplace.heroku.com/blog/2011/12/17/so-this-is-where-we-started/"/>
-    <updated>2011-12-17T00:46:00+08:00</updated>
-    <id>http://theplace.heroku.com/blog/2011/12/17/so-this-is-where-we-started</id>
-    <content type="html"><![CDATA[<h2>The Beginning</h2>
-
-<p>For someone who doesn't have the habits to write things, how do we start blog writing?
-For a man with poor writing skill like me, for a person that doesn't have much to tell...
-yeah...</p>
-
-<p>I think, we better stop here.</p>
 ]]></content>
   </entry>
   
