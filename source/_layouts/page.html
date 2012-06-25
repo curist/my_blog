@@ -28,10 +28,10 @@ layout: default
   <section>
     <h1>Comments</h1>
     <div id="facebook_comments" aria-live="polite">
-      {{ '{% include post/facebook_comments.html %}' }
+      {% include post/facebook_comments.html %}
     </div>
   </section>
-{% endif %}}
+{% endif %}
 {% if site.disqus_short_name and page.comments == true %}
   <section>
     <h1>Comments</h1>
