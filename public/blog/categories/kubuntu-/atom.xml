@@ -4,7 +4,7 @@
   <title><![CDATA[Category: kubuntu, | The Place]]></title>
   <link href="http://theplace.heroku.com/blog/categories/kubuntu-/atom.xml" rel="self"/>
   <link href="http://theplace.heroku.com/"/>
-  <updated>2012-06-25T15:15:17+08:00</updated>
+  <updated>2012-06-25T15:20:32+08:00</updated>
   <id>http://theplace.heroku.com/</id>
   <author>
     <name><![CDATA[curist]]></name>
@@ -46,7 +46,7 @@
 
 <p>我一直有在用，而且覺得很重要的全域熱鍵，meta+r開終端機，meta+e開家目錄，meta+d顯示桌面，大概就這樣；要執行指令是用alt+f2還是如gnome-do用meta+space，倒是都可以接受。</p>
 
-<p>打開熱鍵設定，嗯..有用到windows key的都顯示為怪怪的「<Super> + <Mod4> + ...」之類的東西，其實之前就有看過有人問在gnome-shell 3.4下怎麼用windows key設熱鍵，當時看到的說法是gnome-shell 3.4要把本來<Super>改設為<Mod4>還是反過來我忘了。總之又是一陣折騰，開dconf-editor呀、gconf-editor呀，改呀改的，最後好像是家目錄那組熱鍵有設起來，開終端機的還是無法...！？唉唷做gnome的各位高人為什麼會動到那麼基本的東西我實在無法參透啊。</p>
+<p>打開熱鍵設定，嗯..有用到windows key的都顯示為怪怪的「 &lt; Super > + &lt; Mod4 > + ...」之類的東西，其實之前就有看過有人問在gnome-shell 3.4下怎麼用windows key設熱鍵，當時看到的說法是gnome-shell 3.4要把本來 &lt; Super > 改設為 &lt; Mod4 > 還是反過來我忘了。總之又是一陣折騰，開dconf-editor呀、gconf-editor呀，改呀改的，最後好像是家目錄那組熱鍵有設起來，開終端機的還是無法...！？唉唷做gnome的各位高人為什麼會動到那麼基本的東西我實在無法參透啊。</p>
 
 <p>這邊改一下那邊修一下，真是充實的一天。不過在幾次重開後，進不去x windows了？這又是怎樣勒。到這邊我無法了，當然可以再google再修啦，不過還要花很多時間吧。當下我可以選擇的作法</p>
 
