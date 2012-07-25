@@ -24,7 +24,7 @@ layout: default
     </footer>
   {% endunless %}
 </article>
-{% if site.facebook_appid and page.comments == true %}
+{% if site.facebook_like and site.facebook_appid and page.comments %}
   <section>
     <h1>Comments</h1>
     <div id="facebook_comments" aria-live="polite">
