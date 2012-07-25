@@ -3,7 +3,7 @@ layout: post
 title: "Have Some Fun With Zsh"
 date: 2012-06-29 14:56
 comments: true
-categories: zsh, shell, linux, git
+categories: zsh shell linux git
 ---
 
 bash is fine, but I want to try something different and see if I like it.

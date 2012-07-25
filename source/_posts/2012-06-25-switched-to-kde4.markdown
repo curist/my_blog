@@ -3,7 +3,7 @@ layout: post
 title: "Switched to KDE4 (1)"
 date: 2012-06-25 14:21
 comments: true
-categories: linux, kde4, kubuntu, desktop
+categories: linux kde4 kubuntu desktop
 ---
 有點諷剌的是沒多久前我才宣稱多愛gnome-shell桌面環境而已..
 

@@ -3,7 +3,7 @@ layout: post
 title: "Octopress Github Plugin"
 date: 2012-06-25 17:44
 comments: true
-categories: github, repos, plugin, octopress
+categories: github repos plugin octopress
 ---
 
 不知道什麼時候壞的？

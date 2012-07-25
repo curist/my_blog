@@ -3,7 +3,7 @@ layout: post
 title: "Switched to KDE4 (2)"
 date: 2012-06-25 15:32
 comments: true
-categories: linux, kde4, kubuntu, desktop
+categories: linux kde4 kubuntu desktop
 ---
 
 KDE呀KDE...之前有抓live cd摸過幾次，印象就是滿漂亮的，預設的工具列跟windows有點像，預設的顏色配置跟mac有點像。
