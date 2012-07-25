@@ -376,6 +376,7 @@ end
 
 desc "publish to heroku"
 task :publish do
+  system "git branch -D release"
   system "git co -b release"
   Rake::Task[:generate].execute
   system "sed -i -e'/^public$/d' .gitignore"
