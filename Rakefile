@@ -373,3 +373,18 @@ task :list do
   puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).join(', ')}"
   puts "(type rake -T for more detail)\n\n"
 end
+
+desc "publish to heroku"
+task :publish do
+  system "git co -b release"
+  Rake::Task[:generate].execute
+  system "rm .gitignore"
+  system "git add -A"
+  message = "Site updated at #{Time.now.utc}"
+  system "git commit -m \"#{message}\""
+  puts "\n## Pushing generated website to heroku"
+  system "git push heroku heroku:master --force"
+  puts "\n## Heroku Site deploy complete"
+  system "git co master"
+  system "git branch -D release"
+end
